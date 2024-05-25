@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Sora } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
+import { SessionProvider } from "next-auth/react";
 
 const sora = Sora({ subsets: ["latin"], weight: "300" });
-
-export const metadata: Metadata = {
-  title: "Tech Barber",
-};
 
 export default function RootLayout({
   children,
@@ -16,9 +14,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Tech Barber</title>
+      </head>
       <body className={sora.className}>
-        <Header />
-        {children}
+        <SessionProvider>
+          <Header />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

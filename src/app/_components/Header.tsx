@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn, useSession } from "next-auth/react";
 import { CalendarDays, CircleUserIcon, LogInIcon, ShoppingCartIcon } from "lucide-react";
 
 import {
@@ -10,18 +11,34 @@ import {
   NavigationMenuTrigger,
 } from "@/_components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
+import { Avatar, AvatarImage } from "@/_components/ui/avatar";
 
 const Header = () => {
+  const { data, status } = useSession();
+
+  const handleLoginClick = async () => {
+    return await signIn();
+  };
+
   return (
     <header className="flex justify-between items-center p-5 border-b border-solid bg-[#4B9093] shadow-2xl text-black">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent">
-              <CircleUserIcon size={28} />
+              {status === "unauthenticated" ? (
+                <CircleUserIcon size={28} />
+              ) : (
+                <Avatar>
+                  <AvatarImage src={`${data?.user?.image}`} />
+                </Avatar>
+              )}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <button className="flex items-center gap-1 font-bold border-b border-solid border-[#bababa] text-left px-1 py-2 text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full">
+              <button
+                className="flex items-center gap-1 font-bold border-b border-solid border-[#bababa] text-left px-1 py-2 text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full"
+                onClick={handleLoginClick}
+              >
                 <LogInIcon size={16} />
                 Entrar
               </button>
