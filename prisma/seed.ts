@@ -41,6 +41,19 @@ async function seedDatabase() {
       "Estilo Clássico",
     ];
 
+    const slugs = [
+      "BarbeariaVintage",
+      "Corte&Estilo",
+      "Barba&Navalha",
+      "TheDapperDen",
+      "Cabelo&Cia.",
+      "Machado&Tesoura",
+      "BarbeariaElegance",
+      "EstiloImpecável",
+      "EstiloUrbano",
+      "EstiloClássico",
+    ];
+
     // Endereços fictícios para as barbearias
     const addresses = [
       "Rua da Barbearia, 123",
@@ -55,7 +68,7 @@ async function seedDatabase() {
       "Avenida Clássica, 707",
     ];
 
-    const phone = [
+    const phones = [
       ["(45) 99891-9574", "(45) 99098-1542"],
       ["(45) 99098-1542", "(45) 99891-9574"],
       ["(45) 99887-8732", "(45) 99123-0990"],
@@ -107,14 +120,16 @@ async function seedDatabase() {
       const name = creativeNames[i];
       const address = addresses[i];
       const imageUrl = images[i];
-      const phones = phone[i];
+      const phone = phones[i];
+      const slug = slugs[i];
 
       const barbershop = await prisma.barbershop.create({
         data: {
           name,
           address,
-          imageUrl: imageUrl,
-          phone: phones,
+          imageUrl,
+          phone,
+          slug,
         },
       });
 
