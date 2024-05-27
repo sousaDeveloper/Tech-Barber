@@ -12,9 +12,31 @@ import {
 } from "@/_components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
 import { Avatar, AvatarImage } from "@/_components/ui/avatar";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { data, status } = useSession();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const headerStyle = {
+    backgroundColor: scrolled ? "#4b8f93b2" : "transparent",
+    transition: "background-color 0.3s ease",
+    WebkitBackdropFilter: "blur(0.3rem)",
+    backdropFilter: "blur(0.3rem)",
+  };
 
   const handleSignInClick = async () => {
     await signIn();
@@ -25,13 +47,13 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-5 bg-[#4B9093] shadow-2xl text-black top-0 z-50 sticky">
+    <header className="flex justify-between items-center p-5 shadow-2xl text-black top-0 z-50 sticky" style={headerStyle}>
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent">
               {status === "unauthenticated" ? (
-                <CircleUserIcon size={28} />
+                <CircleUserIcon size={28} className="cursor-pointer" />
               ) : (
                 <Avatar>
                   <AvatarImage src={`${data?.user?.image}`} />
