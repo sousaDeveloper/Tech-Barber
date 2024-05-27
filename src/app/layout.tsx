@@ -4,6 +4,7 @@ import { Sora } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import { AuthProvider } from "@/providers/auth";
+import Footer from "./_components/Footer";
 
 const sora = Sora({ subsets: ["latin"], weight: "300" });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <AuthProvider>
           <Header />
           {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>
