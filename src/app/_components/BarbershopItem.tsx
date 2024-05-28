@@ -1,11 +1,19 @@
-import { Barbershop } from "@prisma/client";
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { Loader } from "lucide-react";
+
+import { Barbershop } from "@prisma/client";
 
 interface BarbershopItemProps {
   barbershop: Barbershop;
 }
 
 const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div
       className="flex flex-col min-w-[170px] h-[270px] rounded-xl"
@@ -28,7 +36,12 @@ const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
       <div className="px-2">
         <h1 className="text-ellipsis text-nowrap overflow-hidden font-bold">{barbershop.name}</h1>
         <p className="text-ellipsis text-nowrap overflow-hidden text-sm opacity-75">{barbershop.address}</p>
-        <button className="w-full rounded-lg py-1 bg-[#4B9093] font-bold cursor-pointer">Reservar</button>
+        <Link href={`barbershop/${barbershop.slug}`} onClick={() => setIsLoading(true)}>
+          <button className="w-full rounded-lg py-1 bg-[#4B9093] font-bold cursor-pointer flex justify-center hover:bg-[#2f6365] hover:text-[#e3e3e3] transition-all duration-300">
+            {isLoading && <Loader size={18} className="animate-spin h-full py-[0.17rem]" />}
+            <span className={`${isLoading && "flex-none hidden"}`}>Detalhes</span>
+          </button>
+        </Link>
       </div>
     </div>
   );
