@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-const CardHello = () => {
+const WelcomeCard = () => {
   const { data, status } = useSession();
 
   return (
@@ -18,4 +18,4 @@ const CardHello = () => {
   );
 };
 
-export default CardHello;
+export default WelcomeCard;
