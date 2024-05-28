@@ -43,15 +43,15 @@ async function seedDatabase() {
 
     const slugs = [
       "BarbeariaVintage",
-      "Corte&Estilo",
-      "Barba&Navalha",
+      "CorteEEstilo",
+      "BarbaENavalha",
       "TheDapperDen",
-      "Cabelo&Cia.",
-      "Machado&Tesoura",
+      "CabeloECia.",
+      "MachadoETesoura",
       "BarbeariaElegance",
-      "EstiloImpecável",
+      "EstiloImpecavel",
       "EstiloUrbano",
-      "EstiloClássico",
+      "EstiloClassico",
     ];
 
     // Endereços fictícios para as barbearias
