@@ -9,7 +9,7 @@ interface BarbershopInfoProps {
 
 const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col px-3">
       <div className="border-b-2 pb-2">
         <h1 className="font-bold">Sobre nós</h1>
         <p className="text-sm">
@@ -80,9 +80,9 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
           width={0}
           height={0}
           sizes="100vh"
-          className="w-full object-cover absolute pr-6 mb-5"
+          className="w-full object-cover absolute pr-6"
         />
-        <div className="relative top-28 bg-[#228992] mx-5 rounded px-3 py-1">
+        <div className="relative top-28 bg-[#228992] mx-5 rounded px-3 py-1 text-center">
           <p className="text-sm font-bold">{barbershop.address}</p>
         </div>
       </div>
