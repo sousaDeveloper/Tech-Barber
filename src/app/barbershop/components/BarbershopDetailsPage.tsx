@@ -58,7 +58,7 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
                 <SheetHeader className="border-b-2 font-bold pt-[1.2rem]">
                   <SheetTitle>Detalhes</SheetTitle>
                 </SheetHeader>
-                <div className="px-3 mt-2">
+                <div className="mt-2">
                   <BarbershopInfo barbershop={barbershop} />
                 </div>
               </SheetContent>
