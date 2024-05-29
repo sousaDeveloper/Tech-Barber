@@ -2,7 +2,6 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { Avatar, AvatarImage } from "@/_components/ui/avatar";
 import { CalendarDays, CircleUserIcon, LogInIcon, LogOutIcon } from "lucide-react";
 import {
   NavigationMenu,
@@ -11,6 +10,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/_components/ui/navigation-menu";
+import { Avatar, AvatarImage } from "@/_components/ui/avatar";
 
 const UserMenu = () => {
   const { data, status } = useSession();

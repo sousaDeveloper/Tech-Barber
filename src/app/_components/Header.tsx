@@ -1,9 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ShoppingCartIcon } from "lucide-react";
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
-import { useEffect, useState } from "react";
 
 import UserMenu from "./UserMenu";
 
@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center p-5 shadow-2xl text-black top-0 z-50 sticky" style={headerStyle}>
       <UserMenu />
-      
+
       <h1 className="font-bold text-lg text-center">Tech Barber</h1>
 
       <div className="p-1 rounded">
