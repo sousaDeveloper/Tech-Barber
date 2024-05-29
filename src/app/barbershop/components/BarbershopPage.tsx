@@ -17,7 +17,7 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
     <main>
       <div className="relative w-full">
         <Link href="/" className="absolute">
-          <ChevronLeftIcon size={28} className="rounded bg-[#228992] m-5 hover:text-white transition-all duration-300" />
+          <ChevronLeftIcon size={28} className="rounded border border-black bg-[#228992] m-5 hover:text-white transition-all duration-300" />
         </Link>
 
         <Image
