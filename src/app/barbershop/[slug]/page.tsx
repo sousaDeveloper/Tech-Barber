@@ -1,6 +1,6 @@
 import { db } from "@/app/_lib/prisma";
 
-import BarbershopDetailsPage from "../components/BarbershopDetailsPage";
+import BarbershopDetailsPage from "./_components/BarbershopDetailsPage";
 
 interface BarbershopPageProps {
   params: {
