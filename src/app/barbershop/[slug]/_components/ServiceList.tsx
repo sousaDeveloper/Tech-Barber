@@ -13,7 +13,18 @@ const ServiceList = async ({ barbershopId }: ServiceListProps) => {
     },
   });
 
-  return services.map((service) => <ServiceItem service={service} key={service.id} />);
+  const barbershop = await db.barbershop.findUnique({
+    where: {
+      id: barbershopId,
+    },
+    include: {
+      services: true,
+    },
+  });
+
+  if (!barbershop) return null;
+
+  return services.map((service) => <ServiceItem barbershop={barbershop} service={service} key={service.id} />);
 };
 
 export default ServiceList;
