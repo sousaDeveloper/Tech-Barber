@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Tech Barber</title>
+        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
       </head>
       <body className={sora.className}>
         <AuthProvider>
