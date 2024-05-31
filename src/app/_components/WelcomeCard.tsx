@@ -7,9 +7,7 @@ import { useSession } from "next-auth/react";
 
 const WelcomeCard = () => {
   const { data, status } = useSession();
-
-  const date = format(new Date(), "EEEE, d 'de' MMMM", { locale: ptBR });
-
+  
   return (
     <div className="bg-[#f59a73] rounded-xl p-2 shadow-xl">
       {status === "authenticated" ? (
@@ -18,7 +16,7 @@ const WelcomeCard = () => {
         <h1 className="font-bold">Olá. Faça seu login e agende seu corte!</h1>
       )}
 
-      <span className="text-sm capitalize">{date}.</span>
+      <span className="text-sm capitalize">{format(new Date(), "EEEE, d 'de' MMMM", { locale: ptBR })}.</span>
     </div>
   );
 };
