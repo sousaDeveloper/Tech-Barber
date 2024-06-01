@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import { signIn, useSession } from "next-auth/react";
 import { format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -12,8 +13,7 @@ import { generateDayTimeList } from "../_helpers/hours";
 
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
 import { Calendar } from "@/_components/ui/calendar";
-import { Loader, Loader2 } from "lucide-react";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface ServiceItemProps {
   barbershop: Barbershop;
@@ -22,6 +22,7 @@ interface ServiceItemProps {
 
 const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   const { status, data } = useSession();
+  const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [hour, setHour] = useState<string | undefined>();
 
@@ -63,10 +64,10 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
       });
 
       toast("Reserva criada com sucesso.", {
-        description: `Para: ${format(date, "dd/MM")} às ${hour}`,
+        description: `${format(newDate, "'Para' dd 'de' MMMM", { locale: ptBR })} às ${hour}.`,
         action: {
-          label: "Ver",
-          onClick: () => console.log(""),
+          label: "Vizualizar",
+          onClick: () => router.push("/bookings"),
         },
       });
       return setDate(undefined);
@@ -175,9 +176,9 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 
                   <SheetFooter className="mt-2 mx-3">
                     <SheetClose>
-                      <button className="w-full bg-[#f59a73] py-1 rounded-lg font-bold" onClick={handleBookingSubmit}>
+                      <p className="w-full bg-[#f59a73] py-1 rounded-lg font-bold" onClick={handleBookingSubmit}>
                         Confirmar Reserva
-                      </button>
+                      </p>
                     </SheetClose>
                   </SheetFooter>
                 </>
