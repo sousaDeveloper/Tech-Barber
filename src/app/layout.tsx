@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "./_components/Header";
 import { AuthProvider } from "@/providers/auth";
 import Footer from "./_components/Footer";
+import { Toaster } from "@/_components/ui/sonner";
 
 const sora = Sora({ subsets: ["latin"], weight: "300" });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </AuthProvider>
       </body>
     </html>
