@@ -3,14 +3,17 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
+import { format, setHours, setMinutes } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import { Barbershop, Service } from "@prisma/client";
-
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
-import { Calendar } from "@/_components/ui/calendar";
-import { ptBR } from "date-fns/locale";
+import saveBooking from "../_actions/save-booking";
 import { generateDayTimeList } from "../_helpers/hours";
-import { format } from "date-fns";
+
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
+import { Calendar } from "@/_components/ui/calendar";
+import { Loader, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 interface ServiceItemProps {
   barbershop: Barbershop;
@@ -18,6 +21,7 @@ interface ServiceItemProps {
 }
 
 const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
+  const { status, data } = useSession();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [hour, setHour] = useState<string | undefined>();
 
@@ -30,8 +34,6 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
     setHour(undefined);
   };
 
-  const { status } = useSession();
-
   const handleBookingClick = async () => {
     if (status === "unauthenticated") {
       return await signIn();
@@ -41,6 +43,37 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   const timeList = useMemo(() => {
     return date ? generateDayTimeList(date) : [];
   }, [date]);
+
+  const handleBookingSubmit = async () => {
+    try {
+      if (!data?.user || !hour || !date) {
+        return;
+      }
+
+      const dateHour = Number(hour.split(":")[0]);
+      const dateMinutes = Number(hour.split(":")[1]);
+
+      const newDate = setMinutes(setHours(date as any, dateHour), dateMinutes);
+
+      await saveBooking({
+        barbershopId: barbershop.id,
+        serviceId: service.id,
+        userId: (data.user as any).id,
+        Date: newDate,
+      });
+
+      toast("Reserva criada com sucesso.", {
+        description: `Para: ${format(date, "dd/MM")} às ${hour}`,
+        action: {
+          label: "Ver",
+          onClick: () => console.log(""),
+        },
+      });
+      return setDate(undefined);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex gap-1 h-[120px] mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl">
@@ -59,6 +92,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 
         <div className="flex justify-between items-center pt-1">
           <p className="text-[#f59a73] font-bold">R$ {+service.price},00</p>
+
           <Sheet>
             <SheetTrigger asChild>
               <button
@@ -70,9 +104,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
             </SheetTrigger>
             <SheetContent className="p-0">
               <SheetHeader className="pt-[1.1rem] border-b-2 pb-2">
-                <SheetTitle>
-                  <h1>Fazer Reserva</h1>
-                </SheetTitle>
+                <SheetTitle>Fazer Reserva</SheetTitle>
               </SheetHeader>
 
               <Calendar
@@ -142,7 +174,11 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                   </div>
 
                   <SheetFooter className="mt-2 mx-3">
-                    <button className="w-full bg-[#f59a73] py-1 rounded-lg font-bold">Confirmar Reserva</button>
+                    <SheetClose>
+                      <button className="w-full bg-[#f59a73] py-1 rounded-lg font-bold" onClick={handleBookingSubmit}>
+                        Confirmar Reserva
+                      </button>
+                    </SheetClose>
                   </SheetFooter>
                 </>
               )}
