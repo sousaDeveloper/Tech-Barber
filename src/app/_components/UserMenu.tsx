@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 import { CalendarDays, CircleUserIcon, LogInIcon, LogOutIcon } from "lucide-react";
 import {
@@ -17,10 +19,12 @@ const UserMenu = () => {
 
   const handleSignInClick = async () => {
     await signIn();
+    toast("Login realizado com sucesso.");
   };
 
   const handleSignOutClick = async () => {
     await signOut();
+    toast("Você deslogou da sua conta com sucesso.");
   };
 
   return (
@@ -46,18 +50,22 @@ const UserMenu = () => {
                 Entrar
               </button>
             )}
-            <button className="flex items-center gap-1 px-1 py-2 border-b-2 border-solid text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full">
-              <CalendarDays />
-              <span>Agendamentos</span>
-            </button>
             {status === "authenticated" && (
-              <button
-                className="flex items-center gap-1 font-bold border-b border-solid border-[#bababa] text-left px-1 py-2 text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full"
-                onClick={handleSignOutClick}
-              >
-                <LogOutIcon size={16} />
-                Sair
-              </button>
+              <>
+                <Link href="/bookings">
+                  <p className="flex items-center gap-1 px-1 py-2 border-b-2 border-solid text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full">
+                    <CalendarDays />
+                    <span>Agendamentos</span>
+                  </p>
+                </Link>
+                <button
+                  className="flex items-center gap-1 font-bold border-b border-solid border-[#bababa] text-left px-1 py-2 text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full"
+                  onClick={handleSignOutClick}
+                >
+                  <LogOutIcon size={16} />
+                  Sair
+                </button>
+              </>
             )}
           </NavigationMenuContent>
         </NavigationMenuItem>
