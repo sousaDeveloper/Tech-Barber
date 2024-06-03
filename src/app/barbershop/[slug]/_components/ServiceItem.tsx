@@ -1,19 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { signIn, useSession } from "next-auth/react";
 import { format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useRouter } from "next/navigation";
 
-import { Barbershop, Service } from "@prisma/client";
+import { Barbershop, Booking, Service } from "@prisma/client";
 import saveBooking from "../_actions/save-booking";
 import { generateDayTimeList } from "../_helpers/hours";
+import getDayBookings from "../_actions/get-day-bookings";
 
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
 import { Calendar } from "@/_components/ui/calendar";
-import { useRouter } from "next/navigation";
 
 interface ServiceItemProps {
   barbershop: Barbershop;
@@ -23,8 +24,23 @@ interface ServiceItemProps {
 const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   const { status, data } = useSession();
   const router = useRouter();
+
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [hour, setHour] = useState<string | undefined>();
+  const [dayBookings, setDayBookings] = useState<Booking[]>([]);
+
+  useEffect(() => {
+    if (!date) {
+      return;
+    }
+
+    const refreshAvailableHours = async () => {
+      const _dayBookings = await getDayBookings(barbershop.id, date);
+      setDayBookings(_dayBookings);
+    };
+
+    refreshAvailableHours();
+  }, [date, barbershop.id]);
 
   const handleHourClick = (time: string) => {
     setHour(time);
@@ -41,10 +57,6 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
     }
   };
 
-  const timeList = useMemo(() => {
-    return date ? generateDayTimeList(date) : [];
-  }, [date]);
-
   const handleBookingSubmit = async () => {
     try {
       if (!data?.user || !hour || !date) {
@@ -54,7 +66,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
       const dateHour = Number(hour.split(":")[0]);
       const dateMinutes = Number(hour.split(":")[1]);
 
-      const newDate = setMinutes(setHours(date as any, dateHour), dateMinutes);
+      const newDate = setMinutes(setHours(date, dateHour), dateMinutes);
 
       await saveBooking({
         barbershopId: barbershop.id,
@@ -75,6 +87,32 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
       console.log(error);
     }
   };
+
+  const timeList = useMemo(() => {
+    if (!date) {
+      return [];
+    }
+
+    return generateDayTimeList(date).filter((time) => {
+      const timeHour = Number(time.split(":")[0]);
+      const timeMinutes = Number(time.split(":")[1]);
+
+      console.log(`Horas: ${timeHour}, minutos: ${timeMinutes}`);
+
+      const booking = dayBookings.find((booking) => {
+        const bookingHour = booking.Date.getHours();
+        const bookingMinutes = booking.Date.getMinutes();
+
+        return bookingHour === timeHour && bookingMinutes === timeMinutes;
+      });
+
+      if (!booking) {
+        return true;
+      }
+
+      return false;
+    });
+  }, [date, dayBookings]);
 
   return (
     <div className="flex gap-1 h-[120px] mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl">
@@ -135,9 +173,9 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
               {date && (
                 <>
                   <div className="p-3 pb-[1.4rem] mt-2 flex gap-2 border-b-2 overflow-y-auto [&::-webkit-scrollbar]:hidden">
-                    {timeList.map((time, index) => (
+                    {timeList.map((time) => (
                       <button
-                        key={index}
+                        key={time}
                         className={`${
                           hour === time ? "bg-[#4B9093] text-white" : "bg-[#dadada]"
                         }  rounded-lg px-2 py-1 transition-all duration-300`}
