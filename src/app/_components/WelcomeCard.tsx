@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 
 const WelcomeCard = () => {
   const { data, status } = useSession();
-  
+
   return (
     <div className="bg-[#f59a73] rounded-xl p-2 shadow-xl">
       {status === "authenticated" ? (
