@@ -122,7 +122,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
         width={0}
         height={0}
         sizes="100vh"
-        className="w-[100px] h-auto rounded-lg object-cover"
+        className="min-w-[100px] h-auto rounded-lg object-cover"
       />
 
       <div className="flex flex-col gap-1">
