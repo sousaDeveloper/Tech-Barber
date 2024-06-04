@@ -15,7 +15,6 @@ import getDayBookings from "../_actions/get-day-bookings";
 
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
 import { Calendar } from "@/_components/ui/calendar";
-import ServiceContent from "@/app/_components/ServiceContent";
 
 interface ServiceItemProps {
   barbershop: Barbershop;
@@ -134,7 +133,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="font-bold bg-[#4B9093] rounded-lg px-4 py-[0.2rem] hover:bg-[#2f6365] hover:text-[#e3e3e3] transition-all duration-300 border border-black"
+                className="font-semibold bg-[#4B9093] rounded-lg px-4 py-[0.2rem] hover:bg-[#2f6365] hover:text-[#e3e3e3] transition-all duration-300"
                 onClick={handleBookingClick}
               >
                 Reservar
@@ -188,11 +187,35 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
               )}
               {date && hour && (
                 <>
-                  <ServiceContent service={service} barbershop={barbershop} date={date} hour={hour} />
+                  <div className="flex flex-col p-2 bg-[#dadada] rounded-lg gap-2 m-3 shadow-2xl">
+                    <div className="flex justify-between border-b border-[#4B9093]">
+                      <h1 className="text-sm font-bold">{service.name}</h1>
+                      <p className="text-sm">R$ {+service.price},00</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <h1 className="text-sm font-bold">Data</h1>
+                      <p className="text-sm capitalize">{format(date, "dd 'de' MMMM", { locale: ptBR })}</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <h1 className="text-sm font-bold">Horário</h1>
+                      <p className="text-sm">{hour}</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <h1 className="text-sm font-bold">Barbearia</h1>
+                      <p className="text-sm">{barbershop.name}</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <h1 className="text-sm font-bold">Local</h1>
+                      <p className="text-sm">{barbershop.address}</p>
+                    </div>
+                  </div>
 
                   <SheetFooter className="mt-2 mx-3">
-                    <SheetClose>
-                      <p className="w-full bg-[#f59a73] py-1 rounded-lg font-bold" onClick={handleBookingSubmit}>
+                    <SheetClose className="w-full">
+                      <p
+                        className="bg-[#f59a73] py-1 rounded-lg font-bold hover:bg-[#d97247] hover:text-white transition-all duration-300"
+                        onClick={handleBookingSubmit}
+                      >
                         Confirmar Reserva
                       </p>
                     </SheetClose>
