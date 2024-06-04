@@ -8,9 +8,7 @@ import { usePathname } from "next/navigation";
 
 import { Prisma } from "@prisma/client";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
-import { Avatar, AvatarImage } from "@/_components/ui/avatar";
-import ServiceContent from "./ServiceContent";
+import BookingDetails from "../bookings/_components/BookingDetails";
 
 interface BookingItemProps {
   booking: Prisma.BookingGetPayload<{
@@ -49,43 +47,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
               />
               <p>{booking.barbershop.name}</p>
             </div>
-            {pathname === "/bookings" && (
-              <Sheet>
-                <SheetTrigger asChild>
-                  <button className="bg-[#4B9093] rounded px-2 text-[0.9rem] hover:bg-[#2a5254] hover:text-white transition-all duration-300">
-                    Detalhes
-                  </button>
-                </SheetTrigger>
-                <SheetContent className="p-0 pt-[1.1rem]">
-                  <SheetHeader className="text-left border-b-2 pb-3">
-                    <SheetTitle className="px-3">Detalhes da Reserva</SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col px-3 w-full">
-                    <div className="pt-3">
-                      <Image
-                        src="/barbershop-map.png"
-                        alt="barbershop-map"
-                        width={0}
-                        height={0}
-                        sizes="100vh"
-                        className="w-full z-1"
-                      />
-                      <div className="z-2 relative -top-[4rem] py-1 flex gap-2 bg-[#dadada] mx-4 px-4 rounded">
-                        <Avatar>
-                          <AvatarImage src={booking.barbershop.imageUrl} alt={booking.barbershop.name} />
-                        </Avatar>
-                        <div className="flex flex-col">
-                          <h1 className="font-bold">{booking.barbershop.name}</h1>
-                          <p className="text-ellipsis text-nowrap text-sm">{booking.barbershop.address}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <h1 className="bg-[#f59a73] rounded-xl w-fit p-[0.1rem] -mt-12 text-[#000000] text-sm">Confirmado</h1>
-                    <ServiceContent barbershop={booking.barbershop} service={booking.services} />
-                  </div>
-                </SheetContent>
-              </Sheet>
-            )}
+            {pathname === "/bookings" && <BookingDetails booking={booking} />}
           </div>
         </div>
         <div className="flex flex-col text-center capitalize p-5">
