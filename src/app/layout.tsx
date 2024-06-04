@@ -20,12 +20,12 @@ export default function RootLayout({
         <title>Tech Barber</title>
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
       </head>
-      <body className={sora.className}>
+      <body className={`${sora.className} flex flex-col min-h-screen`}>
         <AuthProvider>
           <Header />
-          {children}
-          <Footer />
+          <div className="flex-1">{children}</div>
           <Toaster />
+          <Footer />
         </AuthProvider>
       </body>
     </html>
