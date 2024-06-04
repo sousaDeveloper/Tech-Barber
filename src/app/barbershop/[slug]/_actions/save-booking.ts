@@ -10,12 +10,12 @@ interface SaveBookingParams {
 }
 
 const saveBooking = async (params: SaveBookingParams) => {
-  return await db.booking.create({
+  await db.booking.create({
     data: {
       serviceID: params.serviceId,
       barbershopId: params.barbershopId,
       userId: params.userId,
-      Date: new Date(),
+      Date: params.Date,
     },
   });
 };
