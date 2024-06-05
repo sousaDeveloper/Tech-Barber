@@ -1,6 +1,5 @@
 "use client";
 
-import { Smartphone } from "lucide-react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -22,6 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/_components/ui/alert-dialog";
+import ContactPhone from "@/app/_components/ContactPhone";
 
 interface BookingDetailsProps {
   booking: Prisma.BookingGetPayload<{
@@ -94,27 +94,10 @@ const BookingDetails = ({ booking }: BookingDetailsProps) => {
               <p className="text-sm">{booking.barbershop.name}</p>
             </div>
           </div>
-          <div className="flex flex-col gap-2 border-b-2 pb-2 mt-5">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <Smartphone />
-                <p>{booking.barbershop.phone[0]}</p>
-              </div>
-              <button className="bg-[#228992] hover:bg-[#16585e] hover:text-white px-2 py-1 rounded transition-all duration-300">
-                Copiar
-              </button>
-            </div>
-            <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <Smartphone />
-                <p>{booking.barbershop.phone[1]}</p>
-              </div>
-              <button className="bg-[#228992] hover:bg-[#16585e] hover:text-white px-2 py-1 rounded transition-all duration-300">
-                Copiar
-              </button>
-            </div>
-          </div>
+
+          <ContactPhone barbershop={booking.barbershop} />
         </div>
+
         <SheetFooter className="flex gap-2 w-full justify-center px-3 mt-5">
           <SheetClose className="w-full bg-[#dadada] rounded py-1 shadow-xl">
             <button>Voltar</button>

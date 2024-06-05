@@ -1,10 +1,11 @@
-import { Smartphone } from "lucide-react";
-
-import { Barbershop } from "@prisma/client";
 import Image from "next/image";
 
+import { Barbershop } from "@prisma/client";
+
+import ContactPhone from "@/app/_components/ContactPhone";
+
 interface BarbershopInfoProps {
-  barbershop: Barbershop;
+  barbershop: Pick<Barbershop, "name" | "phone" | "address">;
 }
 
 const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
@@ -19,26 +20,7 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
       </div>
 
       <h1 className="font-bold mt-2">Contato</h1>
-      <div className="flex flex-col gap-2 border-b-2 pb-2">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Smartphone />
-            <p>{barbershop.phone[0]}</p>
-          </div>
-          <button className="bg-[#228992] hover:bg-[#16585e] hover:text-white px-2 py-1 rounded transition-all duration-300">
-            Copiar
-          </button>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Smartphone />
-            <p>{barbershop.phone[1]}</p>
-          </div>
-          <button className="bg-[#228992] hover:bg-[#16585e] hover:text-white px-2 py-1 rounded transition-all duration-300">
-            Copiar
-          </button>
-        </div>
-      </div>
+      <ContactPhone barbershop={barbershop} />
 
       <div className="flex flex-col gap-1 mt-2 border-b-2 pb-2">
         <h1 className="font-bold">Horário de Atendimento</h1>
@@ -80,9 +62,9 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
           width={0}
           height={0}
           sizes="100vh"
-          className="w-full object-cover absolute pr-6"
+          className="w-full object-cover z-1"
         />
-        <div className="relative top-28 bg-[#228992] mx-5 rounded px-3 py-1 text-center">
+        <div className="z-2 bg-[#228992] relative bottom-[2.5rem] rounded mx-3 py-1 text-center">
           <p className="text-sm font-bold">{barbershop.address}</p>
         </div>
       </div>
