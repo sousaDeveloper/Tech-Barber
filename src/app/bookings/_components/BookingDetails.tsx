@@ -50,7 +50,7 @@ const BookingDetails = ({ booking }: BookingDetailsProps) => {
           Detalhes
         </button>
       </SheetTrigger>
-      <SheetContent className="p-0 pt-[1.1rem]">
+      <SheetContent className="p-0 pt-[1.1rem] overflow-x-auto">
         <SheetHeader className="text-left border-b-2 pb-3">
           <SheetTitle className="px-3">Detalhes da Reserva</SheetTitle>
         </SheetHeader>

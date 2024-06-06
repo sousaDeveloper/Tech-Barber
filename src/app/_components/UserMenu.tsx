@@ -53,7 +53,7 @@ const UserMenu = () => {
             {status === "authenticated" && (
               <>
                 <Link href="/bookings">
-                  <p className="flex items-center gap-1 px-1 py-2 border-b-2 border-solid text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full">
+                  <p className="sm:flex-none sm:hidden flex items-center gap-1 px-1 py-2 border-b-2 border-solid text-[0.91rem] hover:bg-[#228992] transition-all duration-300 w-full">
                     <CalendarDays />
                     <span>Agendamentos</span>
                   </p>

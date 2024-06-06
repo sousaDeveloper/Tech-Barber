@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 
 import UserMenu from "./UserMenu";
 
@@ -36,8 +37,15 @@ const Header = () => {
       <Link href="/">
         <h1 className="font-bold text-lg text-center">Tech Barber</h1>
       </Link>
-
-      <UserMenu />
+      <div className="flex items-center gap-2">
+        <Link href="/bookings">
+          <p className="flex-none hidden sm:flex items-center gap-1 px-1 py-2 text-[0.91rem] transition-all duration-300 w-full hover:text-[#f59a73]">
+            <CalendarDays size={18} />
+            <span className="mt-[0.1rem] font-bold">Agendamentos</span>
+          </p>
+        </Link>
+        <UserMenu />
+      </div>
     </header>
   );
 };

@@ -15,7 +15,7 @@ const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="flex flex-col min-w-[170px] h-[270px] rounded-xl bg-[#dadada]">
+    <div className="flex flex-col min-w-[170px] max-w-[200px] h-[270px] rounded-xl bg-[#dadada]">
       <div className="p-1">
         <Image
           src={barbershop.imageUrl}
