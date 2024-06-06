@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/app/_lib/prisma";
+import { db } from "@/_lib/prisma";
 import { revalidatePath } from "next/cache";
 
 interface SaveBookingParams {
@@ -20,8 +20,8 @@ const saveBooking = async (params: SaveBookingParams) => {
     },
   });
 
-  revalidatePath("/")
-  revalidatePath("/bookings")
+  revalidatePath("/");
+  revalidatePath("/bookings");
 };
 
 export default saveBooking;

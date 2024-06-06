@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { db } from "../_lib/prisma";
+import { db } from "../../_lib/prisma";
 
 import BookingItem from "../_components/BookingItem";
 

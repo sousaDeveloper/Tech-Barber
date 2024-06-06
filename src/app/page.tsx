@@ -1,4 +1,4 @@
-import { db } from "./_lib/prisma";
+import { db } from "../_lib/prisma";
 
 import SearchInput from "./_components/SearchInput";
 import BarbershopList from "./_components/BarbershopList";

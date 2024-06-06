@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { db } from "../_lib/prisma";
+import { db } from "../../_lib/prisma";
 
 const CancelBooking = async (bookingId: string) => {
   await db.booking.delete({

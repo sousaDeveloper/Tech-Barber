@@ -1,4 +1,4 @@
-import { db } from "@/app/_lib/prisma";
+import { db } from "@/_lib/prisma";
 
 import BarbershopDetailsPage from "./_components/BarbershopDetailsPage";
 
