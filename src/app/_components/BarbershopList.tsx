@@ -14,13 +14,33 @@ const BarbershopList = async () => {
 
   return (
     <>
-      <h1 className="font-bold uppercase md:hidden md:flex-none">Recomendados</h1>
-      <h1 className="font-bold hidden flex-none md:flex text-lg">Populares</h1>
-      <div className="flex overflow-x-auto gap-6 [&::-webkit-scrollbar]:hidden">{barbershopsRecommendeds}</div>
+      <h1 className="font-bold uppercase md:hidden md:flex-none" data-aos="fade-up" data-aos-duration="1000">
+        Recomendados
+      </h1>
+      <h1 className="font-bold hidden flex-none md:flex text-lg" data-aos="fade-up" data-aos-duration="1000">
+        Populares
+      </h1>
+      <div
+        className="flex overflow-x-auto gap-6 [&::-webkit-scrollbar]:hidden md:pt-4 lg:pt-2"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        {barbershopsRecommendeds}
+      </div>
 
-      <h1 className="font-bold uppercase md:hidden md:flex-none mt-6">Populares</h1>
-      <h1 className="font-bold hidden flex-none md:flex mt-6 text-lg">Mais Visitados</h1>
-      <div className="flex overflow-x-auto gap-6 [&::-webkit-scrollbar]:hidden">{barbershopsPopulars}</div>
+      <h1 className="font-bold uppercase md:hidden md:flex-none mt-6" data-aos="fade-up" data-aos-duration="1000">
+        Populares
+      </h1>
+      <h1 className="font-bold hidden flex-none md:flex mt-6 text-lg" data-aos="fade-up" data-aos-duration="1000">
+        Mais Visitados
+      </h1>
+      <div
+        className="flex overflow-x-auto gap-6 [&::-webkit-scrollbar]:hidden md:pt-4 lg:pt-2"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        {barbershopsPopulars}
+      </div>
     </>
   );
 };
