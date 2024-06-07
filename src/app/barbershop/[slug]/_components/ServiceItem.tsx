@@ -153,7 +153,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 locale={ptBR}
                 styles={{
                   head_cell: {
-                    width: "100%",
+                    width: "3.3rem",
                     textTransform: "capitalize",
                   },
                   cell: {

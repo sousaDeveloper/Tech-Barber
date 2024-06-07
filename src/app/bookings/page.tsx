@@ -23,12 +23,6 @@ const BookingsPage = async () => {
           </div>
         ))}
       </VerifyUser>
-      <h1 className="px-3 mt-2">
-        Você <span className="font-semi bold">não possui</span> nenhum agendamento.{" "}
-        <Link href="/" className="underline text-[#f59a73] font-bold">
-          Voltar
-        </Link>
-      </h1>
     </>
   );
 };

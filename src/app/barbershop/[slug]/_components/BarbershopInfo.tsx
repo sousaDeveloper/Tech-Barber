@@ -10,9 +10,9 @@ interface BarbershopInfoProps {
 
 const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
   return (
-    <main className="flex flex-col px-3">
+    <main className="flex flex-col px-3 md:bg-[#dadada] md:rounded-xl md:h-fit md:w-[40rem] lg:w-[25rem] lg:py-2 md:shadow-2xl">
       <div className="border-b-2 pb-2">
-        <h1 className="font-bold">Sobre nós</h1>
+        <h1 className="font-bold lg:text-lg">Sobre nós</h1>
         <p className="text-sm">
           Bem-vindo à {barbershop.name}, onde tradição encontra estilo. Nossa equipe de mestres barbeiros transforma cortes
           de cabelo e barbas em obras de arte. Em um ambiente acolhedor, promovemos confiança, estilo e uma comunidade unida.
