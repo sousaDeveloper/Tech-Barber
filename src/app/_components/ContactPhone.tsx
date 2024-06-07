@@ -1,12 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Smartphone } from "lucide-react";
 
 import { Barbershop } from "@prisma/client";
-import { usePathname } from "next/navigation";
 
 interface ContactPhoneProps {
-  barbershop: Pick<Barbershop, "phone" | "name">;
+  barbershop: Pick<Barbershop, "phone">;
 }
 
 const ContactPhone = ({ barbershop }: ContactPhoneProps) => {

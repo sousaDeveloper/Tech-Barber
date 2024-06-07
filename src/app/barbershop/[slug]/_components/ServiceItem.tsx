@@ -17,8 +17,8 @@ import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, 
 import { Calendar } from "@/_components/ui/calendar";
 
 interface ServiceItemProps {
-  barbershop: Barbershop;
-  service: Service;
+  barbershop: Pick<Barbershop, "address" | "name" | "id">;
+  service: Omit<Service, "barbershopId">;
 }
 
 const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
@@ -113,7 +113,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   }, [date, dayBookings]);
 
   return (
-    <div className="flex gap-1 h-[120px] mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl">
+    <div className="flex gap-1 min-h-[120px] w-full mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl">
       <Image
         src={service.imageUrl}
         alt={service.name}
@@ -123,7 +123,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
         className="min-w-[100px] h-auto rounded-lg object-cover"
       />
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-full sm:justify-between">
         <h1 className="font-bold">{service.name}</h1>
         <p className="text-sm opacity-75 w-full">{service.description}</p>
 
@@ -139,7 +139,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 Reservar
               </button>
             </SheetTrigger>
-            <SheetContent className="p-0">
+            <SheetContent className="p-0 overflow-x-auto w-full">
               <SheetHeader className="pt-[1.1rem] border-b-2 pb-2">
                 <SheetTitle>Fazer Reserva</SheetTitle>
               </SheetHeader>

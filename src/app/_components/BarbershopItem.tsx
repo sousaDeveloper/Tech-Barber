@@ -8,16 +8,16 @@ import { Loader } from "lucide-react";
 import { Barbershop } from "@prisma/client";
 
 interface BarbershopItemProps {
-  barbershop: Barbershop;
+  barbershop: Omit<Barbershop, "phone" | "id">;
 }
 
 const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="flex flex-col min-w-[170px] max-w-[200px] h-[270px] rounded-xl bg-[#dadada]">
+    <div className="flex flex-col min-w-[170px] max-w-[200px] h-[270px] rounded-xl bg-[#dadada] lg:hover:-translate-y-2 transition-all duration-300">
       <div className="p-1">
-        <Image
+        <Image  
           src={barbershop.imageUrl}
           alt={barbershop.name}
           width={0}
