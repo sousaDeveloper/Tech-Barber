@@ -1,14 +1,14 @@
 import { db } from "@/_lib/prisma";
 
-import BarbershopDetailsPage from "./_components/BarbershopDetailsPage";
+import BarbershopPage from "./_components/BarbershopPage";
 
 interface BarbershopPageProps {
   params: {
-    slug?: string;
+    slug: string;
   };
 }
 
-const BarbershopPage = async ({ params: { slug } }: BarbershopPageProps) => {
+const Barbershop = async ({ params: { slug } }: BarbershopPageProps) => {
   const barbershop = await db.barbershop.findMany({
     where: {
       slug: slug,
@@ -18,7 +18,7 @@ const BarbershopPage = async ({ params: { slug } }: BarbershopPageProps) => {
     },
   });
 
-  return barbershop.map((barbershop) => <BarbershopDetailsPage key={barbershop.id} barbershop={barbershop} />);
+  return barbershop.map((barbershop) => <BarbershopPage key={barbershop.id} barbershop={barbershop} />);
 };
 
-export default BarbershopPage;
+export default Barbershop;

@@ -1,7 +1,7 @@
 import { db } from "@/_lib/prisma";
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/_components/ui/carousel";
-import BarbershopItem from "./BarbershopItem";
+import BarbershopItem from "../BarbershopItem";
 
 const CarouselDesktop = async () => {
   const barbershops = await db.barbershop.findMany({});

@@ -7,19 +7,20 @@ import { Barbershop } from "@prisma/client";
 import ServiceList from "./ServiceList";
 import BarbershopInfo from "./BarbershopInfo";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
+import BarbershopPageDesktop from "./BarbershopPageDesktop";
 
 interface BarbershopPageProps {
-  barbershop: Barbershop;
+  barbershop: Omit<Barbershop, "slug">;
 }
 
-const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
+const BarbershopPage = ({ barbershop }: BarbershopPageProps) => {
   return (
     <main>
       <div className="relative w-full">
         <Link href="/" className="absolute">
           <ChevronLeftIcon
             size={28}
-            className="rounded border border-black bg-[#228992] m-5 hover:text-white transition-all duration-300"
+            className="rounded lg:rounded-lg border border-black bg-[#228992] m-5 md:mt-0 hover:text-white transition-all duration-300"
           />
         </Link>
 
@@ -29,13 +30,15 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
           width={0}
           height={0}
           sizes="100vh"
-          className="w-full h-auto"
+          className="w-full h-auto md:flex-none md:hidden"
           style={{
             objectFit: "cover",
           }}
         />
 
-        <section className="p-5 pt-2">
+        <BarbershopPageDesktop barbershop={barbershop} />
+
+        <section className="p-5 pt-2 md:hidden md:flex-none">
           <div className="flex flex-col">
             <h1 className="font-bold text-lg ml-[0.1rem]">{barbershop.name}</h1>
 
@@ -50,7 +53,7 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
             </div>
           </div>
 
-          <div className="flex gap-2 my-3">
+          <div className="flex gap-2 my-3 md:flex-none md:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <button className="bg-[#f59a73] hover:text-white rounded px-5 py-1 font-bold transition-all duration-300 shadow-2xl">
@@ -68,7 +71,7 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
             </Sheet>
           </div>
 
-          <div className="border-t-2">
+          <div className="border-t-2 md:hidden md:flex-none">
             <h1 className="font-bold mt-2">Nossos Serviços</h1>
             <ServiceList barbershopId={`${barbershop.id}`} />
           </div>
@@ -78,4 +81,4 @@ const BarbershopDetailsPage = ({ barbershop }: BarbershopPageProps) => {
   );
 };
 
-export default BarbershopDetailsPage;
+export default BarbershopPage;
