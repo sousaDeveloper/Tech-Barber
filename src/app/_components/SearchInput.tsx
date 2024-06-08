@@ -1,8 +1,13 @@
 import { SearchIcon } from "lucide-react";
 
-const SearchInput = () => {
+interface SearchInputProps {
+  aosData: string;
+  dataAosDuration?: string;
+}
+
+const SearchInput = ({ aosData, dataAosDuration }: SearchInputProps) => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2" data-aos={`${aosData}`} data-aos-duration={`${dataAosDuration}`}>
       <div className="relative mt-3 w-full">
         <input
           type="text"

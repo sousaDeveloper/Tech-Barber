@@ -19,13 +19,9 @@ const MainContentDesktop = async () => {
 
   return (
     <div className="hidden flex-none md:flex md:justify-between xl:justify-around gap-4 lg:gap-0">
-      <div
-        className="flex flex-col justify-center w-[22rem] lg:w-[26rem] xl:w-[30rem]"
-        data-aos="fade-right"
-        data-aos-duration="1000"
-      >
-        <WelcomeCard />
-        <SearchInput />
+      <div className="flex flex-col justify-center w-[22rem] lg:w-[26rem] xl:w-[30rem]">
+        <WelcomeCard aosData="fade-right" />
+        <SearchInput aosData="fade-right" dataAosDuration="1000" />
         <VerifyUser>
           <Carousel className="w-full" orientation="vertical">
             <h1 className="font-bold mt-5">Agendamentos</h1>
@@ -43,7 +39,7 @@ const MainContentDesktop = async () => {
         </VerifyUser>
       </div>
 
-      <Carousel className="w-full max-w-sm" data-aos="fade-left" data-aos-duration="1000">
+      <Carousel className="w-full max-w-sm" data-aos="fade-left">
         <h1 className="font-bold text-lg">Recomendados</h1>
         <CarouselContent className="-ml-1 flex gap-8">
           {barbershops
@@ -55,7 +51,7 @@ const MainContentDesktop = async () => {
             .slice(0, 5)}
         </CarouselContent>
         <CarouselPrevious />
-        <CarouselNext />
+        <CarouselNext />  
       </Carousel>
     </div>
   );

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import VerifyUser from "../_helpers/verify-user";
 import { db } from "../../_lib/prisma";
 

@@ -6,11 +6,16 @@ import ContactPhone from "@/app/_components/ContactPhone";
 
 interface BarbershopInfoProps {
   barbershop: Pick<Barbershop, "name" | "phone" | "address">;
+  dataAos?: string;
 }
 
-const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
+const BarbershopInfo = ({ barbershop, dataAos }: BarbershopInfoProps) => {
   return (
-    <main className="flex flex-col px-3 md:bg-[#dadada] md:rounded-xl md:h-fit md:w-[40rem] lg:w-[25rem] lg:py-2 md:shadow-2xl">
+    <main
+      className="flex flex-col px-3 md:bg-[#dadada] md:rounded-xl h-fit lg:w-[17rem] xl:w-[25rem] lg:py-2 md:shadow-2xl"
+      data-aos={`${dataAos}`}
+      data-aos-duration="1000"
+    >
       <div className="border-b-2 pb-2">
         <h1 className="font-bold lg:text-lg">Sobre nós</h1>
         <p className="text-sm">

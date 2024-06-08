@@ -5,11 +5,15 @@ import { ptBR } from "date-fns/locale";
 
 import { useSession } from "next-auth/react";
 
-const WelcomeCard = () => {
+interface WelcomeCardProps {
+  aosData: string;
+}
+
+const WelcomeCard = ({ aosData }: WelcomeCardProps) => {
   const { data, status } = useSession();
 
   return (
-    <div className="bg-[#f59a73] rounded-xl p-2 shadow-xl">
+    <div className="bg-[#f59a73] rounded-xl p-2 shadow-xl" data-aos={`${aosData}`}>
       {status === "authenticated" ? (
         <h1 className="font-bold md:text-lg xl:text-xl">Olá, {data?.user?.name?.split(" ")[0]}. Vai um corte hoje?</h1>
       ) : (

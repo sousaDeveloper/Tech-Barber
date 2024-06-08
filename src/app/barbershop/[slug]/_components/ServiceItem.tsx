@@ -113,13 +113,17 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   }, [date, dayBookings]);
 
   return (
-    <div className="flex gap-1 min-h-[120px] w-full mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl">
+    <div
+      className="flex gap-1 min-h-[120px] w-full mb-4 rounded-lg bg-[#dadada] p-1 shadow-xl"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <Image
         src={service.imageUrl}
         alt={service.name}
-        width={0}
-        height={0}
-        sizes="100vh"
+        width={100}
+        height={120}
+        sizes="100vw"
         className="min-w-[100px] h-auto rounded-lg object-cover"
       />
 

@@ -12,8 +12,8 @@ export default async function Home() {
     <>
       <div className="py-3 px-5 lg:px-20 xl:px-80">
         <div className="md:flex-none md:hidden">
-          <WelcomeCard />
-          <SearchInput />
+          <WelcomeCard aosData="fade-up" />
+          <SearchInput aosData="fade-up" />
         </div>
 
         <div className="md:flex-none md:hidden">
