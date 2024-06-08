@@ -24,7 +24,7 @@ const ServiceList = async ({ barbershopId }: ServiceListProps) => {
 
   if (!barbershop) return null;
   return (
-    <div className="lg:grid lg:grid-cols-2 lg:gap-x-4">
+    <div className="md:grid md:grid-cols-2 md:gap-x-4">
       {services.map((service) => (
         <ServiceItem barbershop={barbershop} service={service} key={service.id} />
       ))}

@@ -30,6 +30,8 @@ const BookingItem = ({ booking }: BookingItemProps) => {
         className={`flex justify-between border border-solid rounded-lg bg-[#dadada] ${
           pathname === "/bookings" ? "m-5 min-w-[18rem]" : "min-w-[21rem] m-0"
         }`}
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
         <div className="flex flex-col gap-2 border-r-2 flex-1 p-2">
           <h1 className="bg-[#f59a73] rounded-xl w-fit p-[0.1rem] text-[#000000] text-sm">Confirmado</h1>
@@ -40,10 +42,11 @@ const BookingItem = ({ booking }: BookingItemProps) => {
               <Image
                 src={booking.barbershop.imageUrl}
                 alt={booking.barbershop.name}
-                width={0}
-                height={0}
-                sizes="100vh"
+                width={32}
+                height={32}
+                sizes="100vw"
                 className="rounded-full w-8 h-8 object-cover"
+                priority={true}
               />
               <p>{booking.barbershop.name}</p>
             </div>

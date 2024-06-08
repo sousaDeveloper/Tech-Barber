@@ -20,10 +20,11 @@ const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
         <Image
           src={barbershop.imageUrl}
           alt={barbershop.name}
-          width={0}
-          height={0}
+          width={200}
+          height={176}
           className="w-full min-h-44 rounded-xl object-cover"
-          sizes="100vh"
+          sizes="100vw"
+          priority={true}
         />
       </div>
       <div className="px-2">

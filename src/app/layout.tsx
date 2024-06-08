@@ -30,7 +30,7 @@ export default function RootLayout({
         <title>Tech Barber</title>
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
       </head>
       <body className={`${sora.className} flex flex-col min-h-screen`}>
         <AuthProvider>

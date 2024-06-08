@@ -1,6 +1,7 @@
 import { db } from "@/_lib/prisma";
 
 import BarbershopPage from "./_components/BarbershopPage";
+import BarbershopPageDesktop from "./_components/BarbershopPageDesktop";
 
 interface BarbershopPageProps {
   params: {
@@ -18,7 +19,16 @@ const Barbershop = async ({ params: { slug } }: BarbershopPageProps) => {
     },
   });
 
-  return barbershop.map((barbershop) => <BarbershopPage key={barbershop.id} barbershop={barbershop} />);
+  return barbershop.map((barbershop, index) => (
+    <>
+      <div className="md:hidden md:flex-none">
+        <BarbershopPage barbershop={barbershop} key={index} />
+      </div>
+      <div className="flex-none hidden md:flex">
+        <BarbershopPageDesktop barbershop={barbershop} key={index} />
+      </div>
+    </>
+  ));
 };
 
 export default Barbershop;
