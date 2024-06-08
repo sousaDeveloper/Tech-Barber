@@ -5,9 +5,7 @@ import { ChevronLeftIcon, MapPinIcon, StarIcon } from "lucide-react";
 import { Barbershop } from "@prisma/client";
 
 import ServiceList from "./ServiceList";
-import BarbershopInfo from "./BarbershopInfo";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/_components/ui/sheet";
-import BarbershopPageDesktop from "./BarbershopPageDesktop";
+import SheetBarbershopInfo from "./SheetBarbershopInfo";
 
 interface BarbershopPageProps {
   barbershop: Omit<Barbershop, "slug">;
@@ -27,19 +25,18 @@ const BarbershopPage = ({ barbershop }: BarbershopPageProps) => {
         <Image
           src={barbershop.imageUrl}
           alt={barbershop.name}
-          width={0}
-          height={0}
-          sizes="100vh"
-          className="w-full h-auto md:flex-none md:hidden"
+          width={800}
+          height={600}
+          sizes="100vw"
+          className="w-full h-auto"
           style={{
             objectFit: "cover",
           }}
+          priority={true}
         />
 
-        <BarbershopPageDesktop barbershop={barbershop} />
-
-        <section className="p-5 pt-2 md:hidden md:flex-none">
-          <div className="flex flex-col">
+        <section className="p-5 pt-2">
+          <div className="flex flex-col" data-aos="fade-right" data-aos-duration="1000">
             <h1 className="font-bold text-lg ml-[0.1rem]">{barbershop.name}</h1>
 
             <div className="flex items-center">
@@ -52,25 +49,7 @@ const BarbershopPage = ({ barbershop }: BarbershopPageProps) => {
               <p>5,0 (899 avaliações)</p>
             </div>
           </div>
-
-          <div className="flex gap-2 my-3 md:flex-none md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <button className="bg-[#f59a73] hover:text-white rounded px-5 py-1 font-bold transition-all duration-300 shadow-2xl">
-                  Detalhes
-                </button>
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0 overflow-x-auto">
-                <SheetHeader className="border-b-2 font-bold pt-[1.2rem]">
-                  <SheetTitle>Detalhes</SheetTitle>
-                </SheetHeader>
-                <div className="mt-2">
-                  <BarbershopInfo barbershop={barbershop} />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-
+          <SheetBarbershopInfo barbershop={barbershop} />
           <div className="border-t-2 md:hidden md:flex-none">
             <h1 className="font-bold mt-2">Nossos Serviços</h1>
             <ServiceList barbershopId={`${barbershop.id}`} />
