@@ -47,8 +47,9 @@ GOOGLE_CLIENT_SECRET="seu-client-secret-do-google"
 ```
 
 ## Crie sua migration do Prisma:
+```
 npx prisma migrate dev
-
+```
 ## E por fim, rode a aplicacão:
 ```
 npm run dev
