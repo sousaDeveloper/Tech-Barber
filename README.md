@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tech Barber
 
-## Getting Started
+Este projeto foi desenvolvido para barbearias que consiste em uma plataforma completa para gerenciar serviços de barbearia. Os clientes podem visualizar várias barbearias, conferir os serviços oferecidos por cada uma, realizar agendamentos, gerenciar esses agendamentos e fazer login com sua conta Google.
 
-First, run the development server:
+## Funcionalidades
+- Listagem de diversas barbearias
+- Visualização dos serviços oferecidos por cada barbearia
+- Agendamento de serviços
+- Gerenciamento de agendamentos
+- Autenticação via Google
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tecnologias Utilizadas
+- React
+- TypeScript
+- Next.js
+- Tailwind CSS
+- Prisma
+- Zod
+- react-hook-form
+- Next-auth
+- Git
+- shadcn/ui
+
+## Estrutura do Projeto
+
+- Clone o repositório:
+
+```
+git clone https://github.com/sousaDeveloper/Tech-Barber.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Configure as variáveis de ambiente:
 
-## Learn More
+  Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis:
 
-To learn more about Next.js, take a look at the following resources:
+```
+DATABASE_URL="sua-string-de-conexao-do-prisma"
+NEXTAUTH_URL="http://localhost:3000"
+GOOGLE_CLIENT_ID="seu-client-id-do-google"
+GOOGLE_CLIENT_SECRET="seu-client-secret-do-google"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Crie sua migration do Prisma:
+npx prisma migrate dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## E por fim, rode a aplicacão:
+```
+npm run dev
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contribuição
+Para maiores informações, entre em contato com devlpsousa@gmail.com.
