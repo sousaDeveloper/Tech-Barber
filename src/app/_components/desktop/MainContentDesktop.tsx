@@ -18,7 +18,7 @@ const MainContentDesktop = async () => {
   const barbershops = await db.barbershop.findMany({});
 
   return (
-    <div className="hidden flex-none md:flex md:justify-between xl:justify-around gap-4 lg:gap-0">
+    <div className="hidden flex-none md:flex md:justify-between xl:justify-around gap-4 lg:gap-10">
       <div className="flex flex-col justify-center w-[22rem] lg:w-[26rem] xl:w-[30rem]">
         <WelcomeCard aosData="fade-right" />
         <SearchInput aosData="fade-right" dataAosDuration="1000" />

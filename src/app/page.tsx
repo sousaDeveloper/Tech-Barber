@@ -10,7 +10,7 @@ import MainContentDesktop from "./_components/desktop/MainContentDesktop";
 export default async function Home() {
   return (
     <>
-      <div className="py-3 px-5 lg:px-20 xl:px-80">
+      <div className="py-3 px-5 lg:px-20 xl:px-32 2xl:px-[25rem]">
         <div className="md:flex-none md:hidden">
           <WelcomeCard aosData="fade-up" />
           <SearchInput aosData="fade-up" />
@@ -24,8 +24,10 @@ export default async function Home() {
             </div>
           </VerifyUser>
         </div>
+
         <MainContentDesktop />
         <CarouselDesktop />
+
         <div className="mt-5 md:flex-none md:hidden xl:flex xl:flex-col">
           <BarbershopList />
         </div>
