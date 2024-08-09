@@ -28,7 +28,7 @@ const MainContentDesktop = async () => {
 
             <CarouselContent className="-mt-1 h-[120px]">
               {booking.map((booking, index) => (
-                <CarouselItem className="pt-1 md:basis-1/2" key={index}>
+                <CarouselItem className="pt-1 md:basis-1" key={index}>
                   <BookingItem booking={booking} />
                 </CarouselItem>
               ))}
